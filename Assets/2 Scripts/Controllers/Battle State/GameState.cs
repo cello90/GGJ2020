@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public abstract class GameState : State {
     protected GameStateController owner;
 
-    public CameraRig cameraRig { get { return owner.cameraRig; } }
-
     protected virtual void Awake() {
         owner = GetComponent<GameStateController>();
     }

@@ -10,11 +10,12 @@ public class Game : MonoBehaviour
     public bool debugLogBoot = false;
     public bool playMusic = true;
 
-    public static Game instance = null;
-
-    [Header("Components")]
-    MusicPlayer musicPlayer;
-
+    // Components that other objects need to call
+    [HideInInspector] public MusicPlayer musicPlayer;
+    [HideInInspector] public GameStateController gameStateController;
+    [HideInInspector] public static Game instance = null;
+    
+    // Singleton structure
     void OnEnable()
     {
         if(instance != null && this != instance)
@@ -25,26 +26,10 @@ public class Game : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            // Gather Components
-            musicPlayer = GetComponent<MusicPlayer>();
+
+            // Add Components to this gameobject
+            musicPlayer = this.gameObject.AddComponent<MusicPlayer>();
+            gameStateController = this.gameObject.AddComponent<GameStateController>();
         }
-    }
-
-    public GameStateController gameStateController;
-    public bool inTransition
-    {
-        get
-        {
-            if(gameStateController != null)
-            {
-                return gameStateController.inTransition;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
-
-
+    }    
 }
