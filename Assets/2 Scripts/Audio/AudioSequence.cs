@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// Copywrite http://theliquidfire.com/2016/12/12/tactics-rpg-music/
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 

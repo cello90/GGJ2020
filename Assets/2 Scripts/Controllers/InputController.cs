@@ -4,8 +4,8 @@ using System.Collections;
 
 class Repeater
 {
-	const float threshold = 0.5f;
-	const float rate = 0.25f;
+	const float threshold = 0.0f;
+	const float rate = 0.10f;
 	float _next;
 	bool _hold;
 	string _axis;
@@ -56,15 +56,19 @@ public class InputController : MonoBehaviour
 		{
 			if (moveEvent != null)
 				moveEvent(this, new InfoEventArgs<Point>(new Point(x, y)));
+            Debug.Log("Move Event");
 		}
 
 		for (int i = 0; i < 3; ++i)
 		{
 			if (Input.GetButtonUp(_buttons[i]))
 			{
-				if (fireEvent != null)
-					fireEvent(this, new InfoEventArgs<int>(i));
-			}
+                if (fireEvent != null)
+                {
+                    fireEvent(this, new InfoEventArgs<int>(i));
+                    Debug.Log("Fire Event - Button " + _buttons[i]);
+                }
+            }
 		}
 	}
 }
